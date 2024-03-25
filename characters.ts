@@ -5,7 +5,7 @@ export interface participants {
     str : number
 }
 
-export const playeur : participants = {
+export const player : participants = {
     name : "link",
     hp : 60,
     str : 15,
