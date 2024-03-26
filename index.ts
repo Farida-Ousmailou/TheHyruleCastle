@@ -128,3 +128,24 @@ function round_with_boss(floor: number, hp_hero: number): number {
     return hp_hero
 }
 
+function main () {
+    for (let floor = 1; floor <= nb_floors; floor++) {
+        // Appel à la fonction round() pour chaque étage
+        if (floor < nb_floors && hp_hero > 0) {
+        hp_hero = round(floor, hp_hero);
+    
+        console.log("votre score est de", hp_hero)
+        }
+    
+        if (floor === nb_floors && hp_hero > 0) {
+            hp_hero = round_with_boss(floor, hp_hero);
+        }
+        if (hp_hero <= 0) {
+            break; 
+        }
+    
+    }
+    }
+    
+    main()
+
