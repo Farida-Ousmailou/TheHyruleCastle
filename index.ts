@@ -34,6 +34,7 @@ function check_getInput() {
     } catch (error) {
         console.error("Désolé une erreur est servenue" + error)
     }
+    return answer
 }
 
 
@@ -56,7 +57,7 @@ function round(floor: number, hp_hero: number): number {
     const heal: number = 30
 
     hp_enemy = 30
-   
+
 
     try {
 
@@ -86,5 +87,44 @@ function round(floor: number, hp_hero: number): number {
     } catch (error) {
         console.error("Désolé une erreur est servenue" + error)
     }
-return hp_hero
+    return hp_hero
 }
+
+function round_with_boss(floor: number, hp_hero: number): number {
+    console.log(`\t`, "final, round with the BOSS", floor, `\n`)
+    const max_hp = 60
+    const heal: number = 30
+
+    hp_boss = 150
+
+    try {
+
+        while (hp_boss > 0 && hp_hero > 0) {
+            let answering = check_getInput()
+
+            if (answering === answer_possible[0]) {
+                hp_boss -= str_hero
+                hp_hero -= str_boss
+
+                console.log(`${boss.name} Attack, his hp is ${hp_boss} \n`)
+                console.log(`You Attack, your hp is ${hp_hero}\n`)
+                hp_flow(hp_hero, hp_boss)
+
+
+            } else if (answering === answer_possible[1]) {
+                hp_hero = hp_hero + heal - str_boss
+                const hp = max_hp - str_boss
+                hp_hero = Math.min(hp, hp_hero)
+                console.log(`${boss.name} Attack, his hp is ${hp_boss} \n`)
+                console.log("You use heal and win", heal, "hp", "your hp is", hp_hero, `\n`)
+                hp_flow(hp_hero, hp_boss)
+
+
+            }
+        }
+    } catch (error) {
+        console.error("Désolé une erreur est servenue" + error)
+    }
+    return hp_hero
+}
+
